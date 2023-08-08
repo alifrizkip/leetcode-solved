@@ -12,9 +12,8 @@ func maxVowels(s string, k int) int {
                 res = windowVow
             }
 
-            // 0 < windowVow <= k
-            if (windowVow > 0 && windowVow <= k) &&
-              isVowel(string(s[start])) {
+            // prev start
+            if isVowel(string(s[start])) {
                 windowVow--
             }
             start++
