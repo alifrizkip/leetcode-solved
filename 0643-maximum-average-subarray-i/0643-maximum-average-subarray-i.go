@@ -1,15 +1,19 @@
 func findMaxAverage(nums []int, k int) float64 {
     var res float64 = math.Inf(-1)
 
-    for i := 0; i < len(nums) - k + 1; i++ {
-        var tmp float64
-        for _, val := range nums[i:i+k] {
-            tmp += float64(val)
-        }
+    start := 0
+    windowSum := 0
+    for end := 0; end < len(nums); end++ {
+        windowSum += nums[end]
 
-        var avg float64 = float64(tmp) / float64(k)
-        if avg > res {
-            res = avg
+        if end >= k-1 {
+            tempAvg := float64(windowSum) / float64(k)
+            if tempAvg > res {
+                res = tempAvg
+            }
+
+            windowSum -= nums[start]
+            start++
         }
     }
 
