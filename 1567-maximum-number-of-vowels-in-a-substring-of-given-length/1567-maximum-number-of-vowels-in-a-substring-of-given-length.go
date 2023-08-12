@@ -7,12 +7,11 @@ func maxVowels(s string, k int) int {
         }
 
         if end >= k-1 {
-            fmt.Println(windowVow)
             if windowVow > res {
                 res = windowVow
             }
 
-            // prev start
+            // remove vowel at previous start index
             if isVowel(string(s[start])) {
                 windowVow--
             }
