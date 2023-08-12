@@ -1,4 +1,3 @@
-
 func longestSubarray(nums []int) int {
     var res int
     var left, right int
