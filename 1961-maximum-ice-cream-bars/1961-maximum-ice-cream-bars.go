@@ -10,6 +10,7 @@
   
 */
 func maxIceCream(costs []int, coins int) int {
+    // build counter
     counter := [100001]int{}
     for _, n := range costs {
         counter[n]++
@@ -19,17 +20,13 @@ func maxIceCream(costs []int, coins int) int {
     for i := 1; i < len(counter); i++ {
         c := counter[i]
 
-        // if c != 0 && i <= coins {
-        //     res += c
-        //     coins -= i * c
-        // }
-        
-        // InnerLoop:
-            for coins != 0 && c != 0 && i <= coins {
-                res++
-                c--
-                coins -= i
-            }
+        // iteratively deduct coins & adding res
+        // according to counter idx(value) & value(occurence)
+        for coins != 0 && c != 0 && i <= coins {
+            res++
+            c--
+            coins -= i
+        }
     }
 
     return res
