@@ -6,10 +6,10 @@ func lemonadeChange(bills []int) bool {
             continue
         }
 
-        diff := v - 5
         ten, _ := wallet[10]
         five, _ := wallet[5]
 
+        diff := v - 5
         if diff == 15 {
             if ten >= 1 && five >= 1 {
                 wallet[10]--
