@@ -1,28 +1,18 @@
 func convertTime(current string, correct string) int {
-    mins := []int{60, 15, 5, 1}
-
     diffInMin := minutesDiff(current, correct)
-    fmt.Println("diffInMin:", diffInMin)
-    
+
     var res int
     for diffInMin != 0 {
-        if diffInMin - mins[0] >= 0 {
-            diffInMin -= mins[0]
-            res++
-            continue
-        } else if diffInMin - mins[1] >= 0 {
-            diffInMin -= mins[1]
-            res++
-            continue
-        } else if diffInMin - mins[2] >= 0 {
-            diffInMin -= mins[2]
-            res++
-            continue
+        if diffInMin - 60 >= 0 {
+            diffInMin -= 60
+        } else if diffInMin - 15 >= 0 {
+            diffInMin -= 15
+        } else if diffInMin - 5 >= 0 {
+            diffInMin -= 5
         } else {
-            diffInMin -= mins[3]
-            res++
-            continue
+            diffInMin -= 1
         }
+        res++
     }
 
     return res
@@ -38,15 +28,5 @@ func minutesDiff(start, end string) int {
     endH, _ := strconv.Atoi(endArr[0])
     endM, _ := strconv.Atoi(endArr[1])
 
-    diffH := endH - startH
-    diffM := endM - startM
-
-    res := diffH * 60 + diffM
-    // if diffM < 0 {
-    //     res -= diffM
-    // } else {
-    //     res += diffM
-    // }
-
-    return res
+    return (endH - startH) * 60 + (endM - startM)
 }
