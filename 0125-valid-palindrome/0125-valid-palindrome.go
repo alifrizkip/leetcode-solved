@@ -15,10 +15,14 @@ func isPalindrome(s string) bool {
 
     // check palindrome
     newS := strings.ToLower(string(sRune))
-    for i := 0; i < len(newS)/2; i++ {
-        if newS[i] != newS[len(newS)-1-i] {
+    l, r := 0, len(newS) - 1
+    for l < r {
+        if newS[l] != newS[r] {
             return false
-        }   
+        }
+
+        l++
+        r--
     }
     
     return true
