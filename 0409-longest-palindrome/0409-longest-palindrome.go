@@ -1,7 +1,8 @@
 func longestPalindrome(s string) int {
-    dicts := map[string]int{}
+    // rune 'z' - 'A'
+    dicts := [58]int{}
     for _, c := range s {
-        dicts[string(c)]++
+        dicts[c - 'A']++
     }
 
     var res, one int
@@ -13,5 +14,6 @@ func longestPalindrome(s string) int {
             one = 1
         }
     }
+
     return res+one
 }
