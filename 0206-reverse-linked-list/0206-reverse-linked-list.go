@@ -12,12 +12,13 @@ func reverseList(head *ListNode) *ListNode {
 
     var revHead *ListNode
     for head != nil {
-        tmpNext := head.Next
-
-        head.Next = revHead
-        revHead = head
-
-        head = tmpNext
+        /*
+            tmpNext := head.Next
+            head.Next = revHead
+            revHead = head
+            head = tmpNext
+        */
+        head.Next, revHead, head = revHead, head, head.Next
     }
 
     return revHead
