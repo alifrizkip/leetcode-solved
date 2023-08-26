@@ -1,9 +1,7 @@
 func merge(intervals [][]int) [][]int {
     // sort intervals
     sort.Slice(intervals, func(a, b int) bool {
-        return (intervals[a][0] < intervals[b][0]) ||
-            ( (intervals[a][0] == intervals[b][0]) &&
-                (intervals[a][1] < intervals[b][1]) )
+        return intervals[a][0] < intervals[b][0]
     })
 
     var left, right [][]int = intervals[0:1], intervals[1:]
