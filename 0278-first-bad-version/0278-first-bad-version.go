@@ -20,8 +20,6 @@ l
   r
 */
 func firstBadVersion(n int) int {
-    const MAX int = 2147483647
-
     res, l, r := 1, 1, n
     for l <= r {
         mid := (r - l) / 2
@@ -35,8 +33,4 @@ func firstBadVersion(n int) int {
     }
 
     return res
-}
-
-func isOdd(n int) bool {
-    return (n % 2) == 1
 }
