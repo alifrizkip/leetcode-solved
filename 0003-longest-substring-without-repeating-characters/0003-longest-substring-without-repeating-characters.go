@@ -28,17 +28,30 @@ func lengthOfLongestSubstring(s string) int {
 }
 
 // without window sliding
+/*
+res = 3
+{
+    p: 1
+    w: 3
+    k: 4
+    e: 5
+}
+pwwkew
+    i
+  l
+
+*/
 func lengthOfLongestSubstringNoWindowSliding(s string) int {
     dict := [256]int{}
-    var res, start int
+    var res, l int
 
     for i := 0; i < len(s); i++ {
-        if start < dict[s[i]] {
-            start = dict[s[i]]
+        if l < dict[s[i]] {
+            l = dict[s[i]]
         }
 
-        if i - start+1 > res {
-            res = i - start+1
+        if i - l+1 > res {
+            res = i - l+1
         }
 
         dict[s[i]] = i + 1
