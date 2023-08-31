@@ -12,11 +12,10 @@
    r
  0
  */
-func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
-    head := &ListNode{}
-    curr := head
+func mergeTwoLists(l *ListNode, r *ListNode) *ListNode {
+    var head = new(ListNode)
+    var curr = head
 
-    l, r := list1, list2
     for l != nil && r != nil {
         if l.Val < r.Val {
             curr.Next = l
