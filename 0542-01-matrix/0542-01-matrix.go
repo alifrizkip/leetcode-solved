@@ -31,23 +31,18 @@ func updateMatrix(mat [][]int) [][]int {
         }
     }
 
-    ngbrs := [][]int{
-        []int{-1, 0},
-        []int{0, 1},
-        []int{1, 0},
-        []int{0, -1},
-    }
+    directions := [][]int{{-1, 0}, {0, 1}, {1, 0}, {0, -1}}
     for len(q) > 0 {
         c := q[0]
         q = q[1:]
 
-        for _, n := range ngbrs {
-            nR, nC := c[0]+n[0], c[1]+n[1]
-            if (0 <= nR && nR < rowL) &&
-                (0 <= nC && nC < colL) &&
-                mat[nR][nC] > mat[c[0]][c[1]] {
-                    mat[nR][nC] = mat[c[0]][c[1]] + 1
-                    q = append(q, []int{nR, nC})
+        for _, dir := range directions {
+            dirR, dirC := c[0]+dir[0], c[1]+dir[1]
+            if (0 <= dirR && dirR < rowL) &&
+                (0 <= dirC && dirC < colL) &&
+                mat[dirR][dirC] > mat[c[0]][c[1]] {
+                    mat[dirR][dirC] = mat[c[0]][c[1]] + 1
+                    q = append(q, []int{dirR, dirC})
             }
         }
     }
