@@ -1,12 +1,13 @@
+// BFS
 func countBattleships(board [][]byte) int {
     var res int
     rowL, colL := len(board), len(board[0])
 
-    hor := [2][2]int{{0, -1}, {0, 1}}
-    ver := [2][2]int{{-1, 0}, {1, 0}}
+    hor := [1][2]int{{0, 1}}
+    ver := [1][2]int{{1, 0}}
 
-    var visit func(int, int, [2][2]int)
-    visit = func(rowIdx, colIdx int, dirs [2][2]int) {
+    var bfs func(int, int, [1][2]int)
+    bfs = func(rowIdx, colIdx int, dirs [1][2]int) {
         q := [][2]int{{rowIdx, colIdx}}
 
         for len(q) > 0 {
@@ -31,9 +32,8 @@ func countBattleships(board [][]byte) int {
                 continue
             }
 
-            // visit
-            visit(rowIdx, colIdx, hor)
-            visit(rowIdx, colIdx, ver)
+            bfs(rowIdx, colIdx, hor)
+            bfs(rowIdx, colIdx, ver)
 
             res++
         }
