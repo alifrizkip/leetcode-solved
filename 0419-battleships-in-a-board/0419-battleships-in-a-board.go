@@ -1,5 +1,36 @@
-// BFS
+// DFS
 func countBattleships(board [][]byte) int {
+    res, rowL, colL := 0, len(board), len(board[0])
+
+    var dfs func(int, int)
+    dfs = func(row, col int) {
+        if row < rowL &&
+          col < colL &&
+          board[row][col] == 'X' {
+            board[row][col] = '.'
+
+            dfs(row+1, col)
+            dfs(row, col+1)
+        }
+    }
+
+    for rowIdx, row := range board {
+        for colIdx, cell := range row {
+            if cell == '.' {
+                continue
+            }
+
+            dfs(rowIdx, colIdx)
+
+            res++
+        }
+    }
+
+    return res
+}
+
+// BFS
+func countBattleships_BFS(board [][]byte) int {
     var res int
     rowL, colL := len(board), len(board[0])
 
