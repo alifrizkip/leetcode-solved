@@ -1,6 +1,13 @@
 func decodeMessage(key string, message string) string {
-    keysMap := map[rune]rune{}
-    keys := [26]int{}
+    // can't use 0 because 'a' is 0
+    keys := [26]int{
+        -1, -1, -1, -1, -1,
+        -1, -1, -1, -1, -1,
+        -1, -1, -1, -1, -1,
+        -1, -1, -1, -1, -1,
+        -1, -1, -1, -1, -1,
+        -1,
+    }
 
     incIdx := 0
     for _, c := range key {
@@ -8,14 +15,14 @@ func decodeMessage(key string, message string) string {
             continue
         }
 
-        if _, ok := keysMap[c - 'a']; ok {
+        if keys[c-'a'] != -1 {
             continue
         }
 
         keys[c - 'a'] = incIdx
         incIdx++
-        keysMap[c - 'a'] = c - 'a'
     }
+    fmt.Println(keys)
     
     var res string
     for _, c := range message {
