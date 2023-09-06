@@ -1,6 +1,7 @@
 /*
 {
     3: 0
+    2: 1
 }
 */
 func twoSum(nums []int, target int) []int {
