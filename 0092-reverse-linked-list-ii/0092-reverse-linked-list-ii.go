@@ -7,7 +7,6 @@
  */
 func reverseBetween(head *ListNode, left int, right int) *ListNode {
     arrVal :=[]int{}
-    var rightNode *ListNode
 
     node := head
     i := 0
@@ -16,10 +15,6 @@ func reverseBetween(head *ListNode, left int, right int) *ListNode {
 
         if i >= left && i <= right {
             arrVal = append(arrVal, node.Val)
-        }
-
-        if i == right {
-            rightNode = node.Next
         }
 
         node = node.Next
@@ -36,10 +31,6 @@ func reverseBetween(head *ListNode, left int, right int) *ListNode {
         if i >= left && i <= right {
             node.Val = arrVal[len(arrVal)-1]
             arrVal = arrVal[:len(arrVal)-1]
-        }
-
-        if i == right {
-            node.Next = rightNode
         }
 
         node = node.Next
