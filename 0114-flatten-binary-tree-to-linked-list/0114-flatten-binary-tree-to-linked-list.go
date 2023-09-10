@@ -6,7 +6,27 @@
  *     Right *TreeNode
  * }
  */
-func flatten(root *TreeNode)  {
+// Space: O(1)
+func flatten(root *TreeNode) {
+    var prev *TreeNode
+    var visit func(*TreeNode)
+    visit = func(node *TreeNode) {
+        if node == nil {
+            return
+        }
+
+        visit(node.Right)
+        visit(node.Left)
+
+        node.Right = prev
+        node.Left = nil
+        prev = node
+    }
+    visit(root)
+}
+
+// Space: O(n)
+func flattenV1(root *TreeNode)  {
     nodes := []*TreeNode{}
 
     var visit func(*TreeNode)
@@ -19,20 +39,10 @@ func flatten(root *TreeNode)  {
         visit(node.Left)
         visit(node.Right)
     }
-
     visit(root)
 
-    if len(nodes) <= 1 {
-        return
-    }
-
-    nodes = nodes[1:]
-    for len(nodes) > 0 {
-        n := nodes[0]
-        nodes = nodes[1:]
-
-        root.Left = nil
-        root.Right = n
-        root = root.Right
+    for i := 0; i < len(nodes)-1; i++ {
+        nodes[i].Left = nil
+        nodes[i].Right = nodes[i+1]
     }
 }
