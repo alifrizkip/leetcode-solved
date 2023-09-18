@@ -28,7 +28,6 @@ func maxAreaOfIsland(grid [][]int) int {
                 }
 
                 area++
-                fmt.Println(cell[0], cell[1], area)
                 grid[cell[0]][cell[1]] = 0
                 for _, dir := range dirs {
                     r, c := cell[0]+dir[0], cell[1]+dir[1]
