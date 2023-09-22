@@ -1,19 +1,16 @@
 func searchInsert(nums []int, target int) int {
     l, r := 0, len(nums) - 1
 
-    for l < r {
-        mid := (r - l) / 2
-        midVal := nums[l+mid]
+    for l <= r {
+        m := l + (r-l)/2
 
-        if target > midVal {
-            l += mid+1
+        if nums[m] == target {
+            return m
+        } else if nums[m] < target {
+            l, r = m+1, r
         } else {
-            r -= mid+1
+            l, r = l, m-1
         }
-    }
-
-    if target > nums[l] {
-        return l+1
     }
 
     return l
