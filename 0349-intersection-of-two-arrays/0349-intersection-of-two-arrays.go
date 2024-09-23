@@ -1,21 +1,17 @@
 func intersection(nums1 []int, nums2 []int) []int {
-    var leftSet = make([]int, 1000)
+    res := make([]int, 0)
+    set := make(map[int]bool)
+    
     for _, n := range nums1 {
-        leftSet[n]++
+        set[n] = false
     }
-
-    var rightSet = make([]int, 1000)
+    
     for _, n := range nums2 {
-        if leftSet[n] > 0 {
-            rightSet[n]++
+        if val, ok := set[n]; ok && !val {
+            set[n] = true
+            res = append(res, n)
         }
     }
-
-    var ans []int
-    for i := 0; i < 1000; i++ {
-        if rightSet[i] > 0 {
-            ans = append(ans, i)
-        }
-    }
-    return ans
+    
+    return res
 }
