@@ -1,21 +1,14 @@
-/*
-{
-    3: 0
-    2: 1
-}
-*/
 func twoSum(nums []int, target int) []int {
-    hm := map[int]int{}
+    hash := map[int]int{}
     res := []int{}
-
-    for i, num := range nums {
-        val, ok := hm[target-num]
-        if ok {
-            res = []int{val, i}
+    
+    for i, n := range nums {
+        if val, ok := hash[target - n]; ok {
+            res = []int{i, val}
         } else {
-            hm[num] = i
+            hash[n] = i
         }
     }
-
+    
     return res
 }
